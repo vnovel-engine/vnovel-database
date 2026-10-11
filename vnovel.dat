@@ -1,0 +1,79 @@
+clrmamepro (
+	name "vnovel"
+	description "Visual novels (ONScripter-EN, PONScripter, KiriKiri)"
+	version 2026.10.11
+	author "Matcha & Nova"
+	homepage "https://gitlab.com/matchaxnb/onscripter-en-libretro/blob/master/dat/vnovel.dat"
+)
+
+comment (
+	The fingerprint is the game's script/data file: nscript.dat (ONScripter-EN,
+	XOR 0x84), pscript.dat (PONScripter) or data.xp3 (KiriKiri), exactly as the
+	core's engine detection reads it. crc/md5/sha1 are of the raw file bytes.
+)
+
+game (
+	name "Tsukihime"
+	description "Tsukihime (English localization, insani/mion)"
+	developer "TYPE-MOON"
+	publisher "TYPE-MOON"
+	releaseyear "2000"
+	origin "Japan"
+	franchise "Nasuverse"
+	rom ( name nscript.dat size 4992002 crc 671BFC0B md5 d15f6489a2bbb7d5859f787d1e2eb92d sha1 86da8680dca347ec99e739e4b59cf17384a7d89d )
+)
+
+game (
+	name "Kagetsu Tohya"
+	description "Kagetsu Tohya (English localization, v0.5.3)"
+	developer "TYPE-MOON"
+	publisher "TYPE-MOON"
+	releaseyear "2001"
+	origin "Japan"
+	franchise "Nasuverse"
+	rom ( name nscript.dat size 2187392 crc C133C255 md5 d0ffc04278eacb24f929ed38d91da895 sha1 db487d48f956a96a6e8bdfc2706a83ea554c286f )
+)
+
+game (
+	name "Kagetsu Tohya"
+	description "Kagetsu Tohya (original Japanese script, shipped beside the patch)"
+	developer "TYPE-MOON"
+	publisher "TYPE-MOON"
+	releaseyear "2001"
+	origin "Japan"
+	franchise "Nasuverse"
+	rom ( name nscriptoriginal.dat size 2187775 crc 9EDBD4A5 md5 ff518f4263c3e76ae3fe751422d0e1e6 sha1 d9f7dd9356e2afddbae15154be36d3967816a798 )
+)
+
+game (
+	name "Higurashi When They Cry"
+	description "Higurashi no Naku Koro ni Kai - Chapter 8: Matsuribayashi (Le sanglot des cigales R)"
+	developer "07th Expansion"
+	publisher "07th Expansion"
+	releaseyear "2005"
+	origin "Japan"
+	franchise "Higurashi"
+	rom ( name pscript.dat size 6740562 crc F16D003A md5 5c1bc987822becf57c2a67378af921ea sha1 6c5a499c96f0502d23dd6e1863660ff0a75ed3d4 )
+)
+
+game (
+	name "Le sanglot des cigales"
+	description "Higurashi no Naku Koro ni - Chapter 1: Onikakushi (Le sanglot des cigales)"
+	developer "07th Expansion"
+	publisher "07th Expansion"
+	releaseyear "2002"
+	origin "Japan"
+	franchise "Higurashi"
+	rom ( name pscript.dat size 4549522 crc 166FE1CD md5 a92779901980e399d12fbe75439f2fba sha1 635863fae832c225bedbd4018a1a4c03ff155dab )
+)
+
+game (
+	name "Fate/stay night"
+	description "Fate/stay night (English patch)"
+	developer "TYPE-MOON"
+	publisher "TYPE-MOON"
+	releaseyear "2004"
+	origin "Japan"
+	franchise "Nasuverse"
+	rom ( name data.xp3 size 7960837 crc 64960AF9 md5 e9e4034f55c5e458cc678f4371b99231 sha1 687ea982ba830266513e97f89a7094df28e70f59 )
+)

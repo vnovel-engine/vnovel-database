@@ -1,0 +1,6 @@
+game (
+	name "Example Game"
+	description "Example Game (English localization)"
+	// collected 2026-10-11 by vnovel hash-game.py; name from game.id
+	rom ( name nscript.dat size 4992002 crc 671BFC0B md5 d15f6489a2bbb7d5859f787d1e2eb92d sha1 86da8680dca347ec99e739e4b59cf17384a7d89d )
+)
