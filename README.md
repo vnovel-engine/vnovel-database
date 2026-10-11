@@ -18,10 +18,18 @@ tools/hash-game.py ~/VN/MyGame/Game --submit -      # print a block
 tools/hash-game.py ~/VN/MyGame/Game --email -       # print a mail body
 ```
 
-Either paste the block into a new file under `submissions/` and open a merge
-request, or mail the `--email` output to the maintainers. Both contain the same
-`game (...)` fragment; the comments are provenance and are stripped when the
-fragment is merged into the canonical database.
+Then, whichever is easiest:
+
+- **Merge request** (preferred): paste the `--submit` block into a new file
+  under `submissions/` — use the *Submission* template.
+- **Issue**: paste the same block into a new issue; a maintainer moves it.
+- **Email**: send the `--email` body to the address on the maintainers'
+  GitLab profiles. (This project has no inbound mail address of its own —
+  GitLab's email-to-issue "Service Desk" is a paid feature — so issues and
+  merge requests are the reliable path.)
+
+All three carry the same `game (...)` fragment; the comments are provenance
+and are stripped when the fragment is merged into the canonical database.
 
 A submission looks like this:
 
