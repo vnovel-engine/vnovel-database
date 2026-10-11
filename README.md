@@ -58,18 +58,34 @@ it was.
 | Path | Contents |
 |---|---|
 | `submissions/` | One `.dat` fragment per contributed game (or a single file per contributor). |
-| `scripts/merge-submissions.py` | Aggregates `submissions/*.dat` into the canonical database. |
+| `scripts/merge-submissions.py` | Aggregates `submissions/*.dat` into the canonical database (dedup by crc). |
+| `scripts/validate-submission.py` | Validates a fragment as untrusted input; gates a merge. |
 | `scripts/hash-game.py` | Copy of the core's submission tool (kept in step with it). |
 
 ## For maintainers
 
+Everything here is treated as untrusted input (it will be, when a submission
+service exists). Validate before merging — a fragment can only be trusted once
+it is known to parse and to append records rather than rewrite the database:
+
 ```bash
+# reject junk before it reaches the canonical dat, or gate a merge request
+scripts/validate-submission.py submissions/*.dat
+
 # aggregate everything submitted into the canonical dat
-scripts/merge-submissions.py submissions/*.dat -o vnovel.dat
+scripts/merge-submissions.py vnovel.dat submissions/*.dat -o vnovel.dat
 
 # then, in the core repo:
 python3 tools/make-rdb.py vnovel.dat vnovel.rdb
 ```
+
+`validate-submission.py` checks, per fragment: it parses as clrmamepro; every
+`game()` has a name and a well-formed `crc`/`md5`/`sha1`/`size`; the `rom`
+name is one of the four files the core hashes (a mismatch means the wrong file
+was hashed); crcs are unique within the file; values cannot escape the DAT
+grammar; and the input is UTF-8 text of sane size. It exits non-zero if
+anything is rejected, and `--json` gives a machine-readable report — the two
+things a submission service needs to host this safely.
 
 The merge is idempotent and deduplicates by crc, so re-running it over an
 unchanged set reproduces the same database.

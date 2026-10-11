@@ -1,20 +1,8 @@
-# Validates that every submission fragment parses and that the aggregate
-# builds. Catches a malformed block before it reaches the canonical database.
+# Gate: every submission must validate as untrusted input before it can merge.
 validate:
   image: python:3
   script:
-    - python3 -c "import sys,glob,importlib.util,os
-spec=importlib.util.spec_from_file_location('m','scripts/merge-submissions.py')
-m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
-files=sorted(glob.glob('submissions/*.dat'))
-print('submissions:', files)
-for f in files:
-    games=m.parse_games(open(f,encoding='utf-8',errors='replace').read())
-    print(f'  {f}: {len(games)} game(s)')
-    assert games or 'example' in f, f'{f}: no game() blocks'
-    for g in games:
-        assert m.crc_of(g), f'{f}: a game() has no crc'
-        assert g.get('name'), f'{f}: a game() has no name'
-    "
+    - python3 scripts/validate-submission.py submissions/*.dat
+    - python3 scripts/validate-submission.py --json submissions/*.dat > /dev/null
     - python3 scripts/merge-submissions.py vnovel.dat submissions/*.dat -o /tmp/merged.dat
     - python3 scripts/make-rdb.py /tmp/merged.dat /tmp/merged.rdb
